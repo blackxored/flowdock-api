@@ -47,7 +47,7 @@ Capistrano::Configuration.instance(:must_exist).load do
       begin
         flowdock_api.each do |flow|
           flow.push_to_team_inbox(:format => "html",
-            :subject => "#{flowdock_project_name} deployed with branch #{branch} on ##{flowdock_deploy_env}",
+            :subject => "#{flowdock_project_name} deployed with branch #{fetch(:branch)} on ##{flowdock_deploy_env}",
             :content => notification_message,
             :tags => ["deploy", "#{flowdock_deploy_env}"] | flowdock_deploy_tags)
         end unless dry_run
